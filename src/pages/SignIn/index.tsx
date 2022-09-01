@@ -17,6 +17,8 @@ const SignIn = () => {
     <Container>
       <Title>Welcome</Title>
       <Input
+        autoCapitalize="none"
+        keyboardType="email-address"
         placeholder="E-mail"
         value={email}
         onChangeText={text => setEmail(text)}
