@@ -1,36 +1,69 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useForm, Controller} from 'react-hook-form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import {Container, Title} from './styles';
+import {Container, Title, LabelError} from './styles';
+
+type FormProps = {
+  email: string;
+  password: string;
+};
 
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    handleSubmit,
+    control,
+    formState: {errors},
+  } = useForm<FormProps>();
 
-  // Remove after integration
-  const onSubmit = () => {
-    console.log('Email :', email);
-    console.log('Password :', password);
-  };
+  // removed after implement logged area
+  const onSubmit = (data: FormProps) => console.log(data);
 
   return (
     <Container>
       <Title>Welcome</Title>
-      <Input
-        autoCapitalize="none"
-        keyboardType="email-address"
-        placeholder="E-mail"
-        value={email}
-        onChangeText={text => setEmail(text)}
+      <Controller
+        name="email"
+        rules={{
+          required: 'E-mail obrigatório',
+          pattern: {
+            message: 'E-mail inválido',
+            value: /^\b[A-Z0-9._%-]+@[A-Z0-9*-]+\.[A-Z]{2,4}\b$/i,
+          },
+        }}
+        control={control}
+        render={({field: {value, onChange}}) => (
+          <Input
+            autoCapitalize="none"
+            keyboardType="email-address"
+            placeholder="E-mail"
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
       />
-      <Input
-        secureTextEntry
-        autoCapitalize="none"
-        placeholder="Password"
-        value={password}
-        onChangeText={text => setPassword(text)}
+      {errors.email && <LabelError>{errors.email?.message}</LabelError>}
+
+      <Controller
+        name="password"
+        rules={{
+          required: 'Senha obrigatória',
+          minLength: 6,
+        }}
+        control={control}
+        render={({field: {value, onChange}}) => (
+          <Input
+            secureTextEntry
+            autoCapitalize="none"
+            placeholder="Password"
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
       />
-      <Button onPress={onSubmit}>LOGIN</Button>
+      {errors.password && <LabelError>{errors.password?.message}</LabelError>}
+
+      <Button onPress={handleSubmit(onSubmit)}>LOGIN</Button>
     </Container>
   );
 };
