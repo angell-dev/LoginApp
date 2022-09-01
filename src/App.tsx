@@ -4,7 +4,7 @@ import SignIn from './pages/SignIn';
 
 const App = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <SignIn />
     </SafeAreaView>
   );
