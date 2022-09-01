@@ -1,7 +1,7 @@
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import Button from '@components/Button';
+import Input from '@components/Input';
 import {Container, Title, LabelError} from './styles';
 
 type FormProps = {

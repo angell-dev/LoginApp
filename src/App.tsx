@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import SignIn from './pages/SignIn';
+import SignIn from '@pages/SignIn';
 
 const App = () => {
   return (
