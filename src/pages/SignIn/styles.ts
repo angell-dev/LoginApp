@@ -14,3 +14,9 @@ export const Title = styled.Text`
   margin-bottom: 34px;
   font-weight: 600;
 `;
+
+export const LabelError = styled.Text`
+  align-self: flex-start;
+  color: #ff375b;
+  margin-bottom: 8px;
+`;
