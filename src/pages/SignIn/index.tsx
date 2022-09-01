@@ -17,12 +17,15 @@ const SignIn = () => {
     <Container>
       <Title>Welcome</Title>
       <Input
+        autoCapitalize="none"
+        keyboardType="email-address"
         placeholder="E-mail"
         value={email}
         onChangeText={text => setEmail(text)}
       />
       <Input
         secureTextEntry
+        autoCapitalize="none"
         placeholder="Password"
         value={password}
         onChangeText={text => setPassword(text)}
